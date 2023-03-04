@@ -14,6 +14,7 @@ namespace AggregationApp.Services.Helper
         public MappingInitializer()
         {
             CreateMap<ElecticCityServiceModel, ElectricCityModel>().ReverseMap();
+            CreateMap<ElectricInsertDataModel, ElectricCityModel>().ReverseMap();
         }
     }
 }

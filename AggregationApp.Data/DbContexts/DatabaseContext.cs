@@ -13,7 +13,7 @@ namespace AggregationApp.Data.DbContexts
         public DatabaseContext(DbContextOptions options) : base(options) { }
 
 
-        public DbSet<ElectricCityModel> ElectricityModels { get; set; }
+        public DbSet<ElectricInsertDataModel> ElectricityModels { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

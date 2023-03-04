@@ -13,18 +13,19 @@ namespace AggregationApp.Repository.Implementations
     public class AggrageteRepository : IAggrageteRepository
     {
         private readonly DatabaseContext _context;
-        public readonly DbSet<ElectricCityModel> _dbSet;
+        public readonly DbSet<ElectricInsertDataModel> _dbSet;
         public AggrageteRepository(DatabaseContext context)
         {
             _context = context;
-            _dbSet = _context.Set<ElectricCityModel>();
+            _dbSet = _context.Set<ElectricInsertDataModel>();
         }
 
-        public async Task<bool> InsertAggregatedData(List<ElectricCityModel> models)
+        public async Task<bool> InsertAggregatedData(List<ElectricInsertDataModel> models)
         {
             if (models == null)
                 return await Task.FromResult(false);
             await _dbSet.AddRangeAsync(models);
+            _context.SaveChanges();
             return true;
         }
     }

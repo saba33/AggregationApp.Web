@@ -21,7 +21,7 @@ namespace AggregationApp.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AggregationApp.Data.Models.ElectricCityModel", b =>
+            modelBuilder.Entity("AggregationApp.Data.Models.ElectricInsertDataModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,32 +29,14 @@ namespace AggregationApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Obj_Gv_Tipas")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Obj_Numeris")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Obt_Pavadinimas")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("P_Minus")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("P_Plus")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Pl_T")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Tinklas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPMinus")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalPMinus")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("TotalPPlus")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalPPlus")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

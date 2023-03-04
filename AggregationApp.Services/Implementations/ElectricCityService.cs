@@ -29,14 +29,15 @@ namespace AggregationApp.Services.Implementations
         public async Task<IList<ElecticCityServiceModel>> GetFiltteredData()
            => await ApiServiceClient.RetriveData();
 
-        public Task<bool> InsertDilteredData()
+        public async Task<bool> InsertDilteredData()
         {
             try
             {
-                var data = GetFiltteredData();
+                var data = await GetFiltteredData();
                 List<ElectricCityModel> model = _mapper.Map<List<ElectricCityModel>>(data);
-                _repo.InsertAggregatedData(model);
-                return Task.FromResult(true);
+                List<ElectricInsertDataModel> insetModel=  _mapper.Map<List<ElectricInsertDataModel>>(model);
+                await _repo.InsertAggregatedData(insetModel);
+                return true;
             }
             catch (Exception)
             {

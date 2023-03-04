@@ -9,6 +9,6 @@ namespace AggregationApp.Repository.Abstractions
 {
     public interface IAggrageteRepository
     {
-        Task<bool> InsertAggregatedData(List<ElectricCityModel> models);
+        Task<bool> InsertAggregatedData(List<ElectricInsertDataModel> models);
     }
 }

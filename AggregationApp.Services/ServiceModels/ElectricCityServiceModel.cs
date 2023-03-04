@@ -16,13 +16,16 @@ namespace AggregationApp.Services.ServiceModels
         public string Obt_Pavadinimas { get; set; }
         public string Obj_Gv_Tipas { get; set; }
         public int Obj_Numeris { get; set; }
-        public decimal P_Plus { get; set; }
+        public double P_Plus { get; set; }
         public string Pl_T { get; set; }
-        public decimal P_Minus { get; set; }
-        public decimal TotalPPlus{ get; set; }
-        public decimal TotalPMinus{ get; set; }
+        public double P_Minus { get; set; }
+        public double TotalPPlus{ get; set; }
+        public double TotalPMinus{ get; set; }
 
+        public ElecticCityServiceModel()
+        {
 
+        }
         public ElecticCityServiceModel(string apiResponse) 
         {
             string[] values = apiResponse.Split(',');
@@ -31,9 +34,17 @@ namespace AggregationApp.Services.ServiceModels
             Obt_Pavadinimas = values[1];
             Obj_Gv_Tipas = values[2];
             Obj_Numeris = int.Parse(values[3]);
-            P_Plus = Decimal.Parse(values[4]);
+
+            if(Double.TryParse(values[4], out double result))
+                    P_Plus = result;
+            else
+                P_Plus = 0.00;
             Pl_T = values[5].ToString();
-            P_Minus = Decimal.Parse(values[6]);
+
+            if (Double.TryParse(values[4], out double res))
+                P_Minus = result;
+            else
+                P_Minus = 0.00;
         }
     }
 }

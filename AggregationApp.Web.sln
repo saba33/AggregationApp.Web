@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregationApp.Web", "AggregationApp.Web\AggregationApp.Web.csproj", "{601858DE-76E8-46DC-AC14-7C6269C2A080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AggregationApp.Web", "AggregationApp.Web\AggregationApp.Web.csproj", "{601858DE-76E8-46DC-AC14-7C6269C2A080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregationApp.Services", "AggregationApp.Services\AggregationApp.Services.csproj", "{549291AB-7031-407E-961E-8FDFD0AAD905}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AggregationApp.Services", "AggregationApp.Services\AggregationApp.Services.csproj", "{549291AB-7031-407E-961E-8FDFD0AAD905}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregationApp.Data", "AggregationApp.Data\AggregationApp.Data.csproj", "{469F3566-0FFC-4308-AFC8-58D5B27F9A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AggregationApp.Data", "AggregationApp.Data\AggregationApp.Data.csproj", "{469F3566-0FFC-4308-AFC8-58D5B27F9A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregationApp.Repository", "AggregationApp.Repository\AggregationApp.Repository.csproj", "{FCE85F85-98E5-437B-ACA1-219087717DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AggregationApp.Repository", "AggregationApp.Repository\AggregationApp.Repository.csproj", "{FCE85F85-98E5-437B-ACA1-219087717DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AggregationAppTests", "AggregationAppTests\AggregationAppTests.csproj", "{D31683A5-117E-4C9F-994A-5F1129A18809}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FCE85F85-98E5-437B-ACA1-219087717DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCE85F85-98E5-437B-ACA1-219087717DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCE85F85-98E5-437B-ACA1-219087717DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31683A5-117E-4C9F-994A-5F1129A18809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31683A5-117E-4C9F-994A-5F1129A18809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31683A5-117E-4C9F-994A-5F1129A18809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31683A5-117E-4C9F-994A-5F1129A18809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

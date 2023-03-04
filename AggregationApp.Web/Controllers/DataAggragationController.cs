@@ -23,7 +23,7 @@ namespace AggregationApp.Web.Controllers
             try
             {
                 _logger.LogInformation("Accessed InsertData EndPoint");
-                return await Task.FromResult(Ok(_cityService.InsertDilteredData()));
+                return await Task.FromResult(Ok( await _cityService.InsertDilteredData()));
             }
             catch (Exception e)
             {
