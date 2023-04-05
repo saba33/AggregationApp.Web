@@ -8,6 +8,8 @@ using AggregationApp.Repository.Implementations;
 using AggregationApp.Services.Abstractions;
 using AggregationApp.Services.Implementations;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using AggregationApp.Web.Middleware;
+using AggregationApp.Services.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +22,12 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IElectricCityService, ElectricCityService>();
 builder.Services.AddScoped<IAggrageteRepository, AggrageteRepository>();
-
-
-
-
+builder.Services.AddScoped<IDataProcessor, DataProcessor>();
+IConfiguration configuration = new ConfigurationBuilder()
+       .SetBasePath(Directory.GetCurrentDirectory())
+       .AddJsonFile("callurls.json", optional: true, reloadOnChange: true)
+       .Build();
+builder.Services.AddSingleton(configuration);
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File
@@ -51,5 +55,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<AggregateExceptionMiddleware>();
 
 app.Run();
