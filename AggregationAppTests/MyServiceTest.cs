@@ -22,7 +22,7 @@ namespace AggregationAppTests
         {
             this.configuration = configuration;
             var services = new ServiceCollection();
-            services.AddScoped<IAggrageteRepository, AggrageteRepository>();
+            services.AddScoped(typeof(IAggrageteRepository<>), typeof(AggrageteRepository<>));
             services.AddScoped<IElectricCityService, ElectricCityService>();
             var serviceProvider = services.BuildServiceProvider();
             _service = serviceProvider.GetService<IElectricCityService>();

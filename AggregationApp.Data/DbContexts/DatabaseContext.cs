@@ -1,5 +1,6 @@
 ﻿using AggregationApp.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 
 namespace AggregationApp.Data.DbContexts
@@ -14,7 +15,7 @@ namespace AggregationApp.Data.DbContexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            base.OnModelCreating(builder);
         }
     }
 }
