@@ -52,8 +52,8 @@ namespace AggregationAppTests
             };
 
 
-            var data = await _service.GetFiltteredData();
-            List<ElecticCityServiceModel> actualData = data.ToList();
+            var data = await _service.GetFilteredData();
+            List<ElectricCityModel> actualData = data.ToList();
 
             Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(expectedData, actualData);
         }

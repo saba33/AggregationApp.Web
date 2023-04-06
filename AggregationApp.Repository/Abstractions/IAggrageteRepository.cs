@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AggregationApp.Repository.Abstractions
 {
-    public interface IAggrageteRepository
+    public interface IAggrageteRepository<T> where T : class
     {
-        Task<bool> InsertAggregatedData(List<ElectricInsertDataModel> models);
+        Task<bool> InsertAggregatedData(T models);
     }
 }

@@ -21,7 +21,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IElectricCityService, ElectricCityService>();
-builder.Services.AddScoped<IAggrageteRepository, AggrageteRepository>();
+builder.Services.AddScoped(typeof(IAggrageteRepository<>), typeof(AggrageteRepository<>));
 builder.Services.AddScoped<IDataProcessor, DataProcessor>();
 IConfiguration configuration = new ConfigurationBuilder()
        .SetBasePath(Directory.GetCurrentDirectory())
@@ -37,13 +37,11 @@ Log.Logger = new LoggerConfiguration()
     rollingInterval: RollingInterval.Day
     ).CreateLogger();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 Log.Information("Application Is Starting");
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

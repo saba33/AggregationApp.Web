@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +22,14 @@ namespace AggregationApp.Services.Implementations
 {
     public class ElectricCityService : IElectricCityService
     {
-        private readonly IAggrageteRepository _repo;
+        private readonly IAggrageteRepository<List<ElectricInsertDataModel>> _repo;
         private readonly IMapper _mapper;
         private readonly ILogger<ElectricCityService> _logger;
         private readonly ILogger<DataProcessor> _dataProcessotLogger;
         private readonly IConfiguration _configuration;
 
         public ElectricCityService(
-             IAggrageteRepository repo,
+             IAggrageteRepository<List<ElectricInsertDataModel>> repo,
              IMapper mapper,
              ILogger<ElectricCityService> logger,
              IConfiguration configuration,
