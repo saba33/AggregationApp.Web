@@ -12,7 +12,7 @@ using AggregationApp.Web.Middleware;
 using AggregationApp.Services.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.WebHost.UseUrls("http://0.0.0.0:5000");
 // Add serviaces to the container.
 
 
