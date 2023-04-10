@@ -22,17 +22,22 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IElectricCityService, ElectricCityService>();
 builder.Services.AddScoped(typeof(IAggrageteRepository<>), typeof(AggrageteRepository<>));
 builder.Services.AddScoped<IDataProcessor, DataProcessor>();
-IConfiguration configuration = new ConfigurationBuilder()
+IConfiguration Serviceconfiguration = new ConfigurationBuilder()
        .SetBasePath(Directory.GetCurrentDirectory())
        .AddJsonFile("callurls.json", optional: true, reloadOnChange: true)
        .Build();
-builder.Services.AddSingleton(configuration);
+builder.Services.AddSingleton(Serviceconfiguration);
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
+var logDirectory = configuration.GetValue<string>("LogDirectory");
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File
     (
-    path: "C:\\Users\\Saba\\source\\repos\\HotelListingApp\\HotelListingApp\\LogFile\\HotelListingLog.txt",
-    outputTemplate: "{Timestap: yyyy-mm-dd hh:mm:ss.fff zzz} [{Level: u3}] {Message:lj}{NewLine}{Exxception}",
+    path: logDirectory,
+    outputTemplate: "{Timestap: yyyy-mm-dd hh:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
     rollingInterval: RollingInterval.Day
     ).CreateLogger();
 
