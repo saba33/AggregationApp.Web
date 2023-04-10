@@ -22,11 +22,11 @@ namespace AggregationApp.Services.Helper
         {
             var allData = new List<ElecticCityServiceModel>();
             var monthKeys = new[] { "FirstMonthData", "SecondMonthData", "ThirdMonthData", "FourthMonthData" };
-
             foreach (var monthKey in monthKeys)
             {
-                var monthUrl = _configuration[monthKey];
-
+                
+                var monthUrl = _configuration.GetSection("ApiUrls").GetValue<string>(monthKey);
+                //var monthUrl = apiUrls.GetValue<string>(monthKey);
                 _logger.LogInformation($"Retrieving data from {monthUrl}");
                 var monthData = await ApiServiceClient.RetriveData(monthUrl);
                 _logger.LogInformation($"Retrieved {monthData.Count} records for {monthKey}");

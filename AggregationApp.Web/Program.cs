@@ -22,17 +22,15 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IElectricCityService, ElectricCityService>();
 builder.Services.AddScoped(typeof(IAggrageteRepository<>), typeof(AggrageteRepository<>));
 builder.Services.AddScoped<IDataProcessor, DataProcessor>();
-IConfiguration Serviceconfiguration = new ConfigurationBuilder()
-       .SetBasePath(Directory.GetCurrentDirectory())
-       .AddJsonFile("callurls.json", optional: true, reloadOnChange: true)
-       .Build();
-builder.Services.AddSingleton(Serviceconfiguration);
-
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
+var serviceConfiguration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables()
     .Build();
-var logDirectory = configuration.GetValue<string>("LogDirectory");
 
+builder.Services.AddSingleton(serviceConfiguration);
+
+var logDirectory = serviceConfiguration.GetSection("LogDirectory").GetValue<string>("FilePath");
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File
     (
