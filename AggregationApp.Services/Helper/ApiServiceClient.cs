@@ -24,7 +24,8 @@ namespace AggregationApp.Services.Helper
             List<String> FormatedDataList = content.Split('\n').ToList();
             List<ElecticCityServiceModel> DataModels = new List<ElecticCityServiceModel>();
 
-            FormatedDataList.RemoveAt(0);
+            FormatedDataList.RemoveAt(0); 
+
             foreach (var item in FormatedDataList)
             {
                 if (!String.IsNullOrEmpty(item))
