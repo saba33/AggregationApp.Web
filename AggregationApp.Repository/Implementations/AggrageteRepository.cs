@@ -1,6 +1,6 @@
 ﻿using AggregationApp.Data.DbContexts;
 using AggregationApp.Data.Models;
-using AggregationApp.Repository.Abstractions;
+using AggregationApp.Repository.Abstractions; 
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace AggregationApp.Repository.Implementations
 {
-    public class AggrageteRepository : IAggrageteRepository
+    public class AggrageteRepository<T> : IAggrageteRepository<T> where T : class
     {
         private readonly DatabaseContext _context;
-        public readonly DbSet<ElectricInsertDataModel> _dbSet;
+        private readonly DbSet<T> _dbSet;
         public AggrageteRepository(DatabaseContext context)
         {
             _context = context;
-            _dbSet = _context.Set<ElectricInsertDataModel>();
+            _dbSet = _context.Set<T>();
         }
 
-        public async Task<bool> InsertAggregatedData(List<ElectricInsertDataModel> models)
+        public async Task<bool> InsertAggregatedData(T models)
         {
-            if (models == null)
-                return await Task.FromResult(false);
+            if (models == null) return false;
+
             await _dbSet.AddRangeAsync(models);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return true;
         }
     }

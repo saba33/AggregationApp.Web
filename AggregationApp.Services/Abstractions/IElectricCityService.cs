@@ -1,4 +1,6 @@
-﻿using AggregationApp.Services.ServiceModels;
+﻿using AggregationApp.Data.Models;
+using AggregationApp.Services.AggregateEnums;
+using AggregationApp.Services.ServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,8 @@ namespace AggregationApp.Services.Abstractions
 {
     public interface IElectricCityService
     {
-        Task<IList<ElecticCityServiceModel>> GetFiltteredData();
-        Task<bool> InsertDilteredData();
+        Task<IList<ElectricCityModel>> GetFilteredData();
+        Task<AggregateDataResult> InsertFilteredData();
 
     }
 }

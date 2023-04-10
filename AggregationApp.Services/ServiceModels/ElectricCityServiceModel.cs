@@ -19,14 +19,12 @@ namespace AggregationApp.Services.ServiceModels
         public double P_Plus { get; set; }
         public string Pl_T { get; set; }
         public double P_Minus { get; set; }
-        public double TotalPPlus{ get; set; }
-        public double TotalPMinus{ get; set; }
+        public double TotalPPlus { get; set; }
+        public double TotalPMinus { get; set; }
 
-        public ElecticCityServiceModel()
-        {
+        public ElecticCityServiceModel() {}
 
-        }
-        public ElecticCityServiceModel(string apiResponse) 
+        public ElecticCityServiceModel(string apiResponse)
         {
             string[] values = apiResponse.Split(',');
 
@@ -35,16 +33,25 @@ namespace AggregationApp.Services.ServiceModels
             Obj_Gv_Tipas = values[2];
             Obj_Numeris = int.Parse(values[3]);
 
-            if(Double.TryParse(values[4], out double result))
-                    P_Plus = result;
+            if (double.TryParse(values[4], out double pPlus))
+            {
+                P_Plus = pPlus;
+            }
             else
+            {
                 P_Plus = 0.00;
+            }
+
             Pl_T = values[5].ToString();
 
-            if (Double.TryParse(values[4], out double res))
-                P_Minus = result;
+            if (double.TryParse(values[6], out double pMinus))
+            {
+                P_Minus = pMinus;
+            }
             else
+            {
                 P_Minus = 0.00;
+            }
         }
     }
 }

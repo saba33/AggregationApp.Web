@@ -8,22 +8,18 @@ using AggregationApp.Services.ServiceModels;
 using Microsoft.Extensions.Configuration;
 using AggregationApp.Services.Implementations;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.Extensions.Logging;
 
 namespace AggregationApp.Services.Helper
 {
     public static class ApiServiceClient
     {
-        public static async Task<IList<ElecticCityServiceModel>> RetriveData()
+        public static async Task<IList<ElecticCityServiceModel>> RetriveData(string url)
         {
-            string url = "";
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("C:\\Users\\Saba\\source\\repos\\AggregationApp.Web\\AggregationApp.Services\\Configurations\\callurls.json", optional: true, reloadOnChange: true)
-                .Build();
-            url = configuration["FourthMonthData"];
-
             using var client = new HttpClient();
             HttpResponseMessage data = await client.GetAsync(url);
             var content = await data.Content.ReadAsStringAsync();
+
 
             List<String> FormatedDataList = content.Split('\n').ToList();
             List<ElecticCityServiceModel> DataModels = new List<ElecticCityServiceModel>();
@@ -33,7 +29,6 @@ namespace AggregationApp.Services.Helper
             {
                 if (!String.IsNullOrEmpty(item))
                 {
-
                     Console.WriteLine(item);
                     ElecticCityServiceModel model = new ElecticCityServiceModel(item);
                     DataModels.Add(model);

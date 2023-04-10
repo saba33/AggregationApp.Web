@@ -10,11 +10,9 @@ namespace AggregationApp.Web.Controllers
     public class DataAggragationController : ControllerBase
     {
         private readonly IElectricCityService _cityService;
-        private readonly ILogger<DataAggragationController> _logger;
         public DataAggragationController(IElectricCityService cityService, ILogger<DataAggragationController> logger)
         {
-            _cityService = cityService;
-            _logger = logger;
+            _cityService = cityService ?? throw new ArgumentNullException(nameof(cityService));
         }
 
         [HttpGet]
@@ -22,12 +20,11 @@ namespace AggregationApp.Web.Controllers
         {
             try
             {
-                _logger.LogInformation("Accessed InsertData EndPoint");
-                return await Task.FromResult(Ok( await _cityService.InsertDilteredData()));
+                var result = await _cityService.InsertFilteredData();
+                return Ok(result);
             }
             catch (Exception e)
             {
-                _logger.LogTrace(e.Message, e.StackTrace);
                 throw;
             }
             
